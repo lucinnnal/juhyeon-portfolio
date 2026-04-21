@@ -10,15 +10,15 @@
   <style>
     /* ── TOKENS ── */
     :root {
-      --pink:  #F9A8D4;
-      --blue:  #93C5FD;
-      --green: #BEF264;
-      --bg:    #080808;
-      --card:  #101010;
-      --card2: #161616;
-      --border:#222;
-      --text:  #f0f0f0;
-      --muted: #666;
+      --pink:  #e879a0;
+      --blue:  #3b82f6;
+      --green: #65a30d;
+      --bg:    #ffffff;
+      --card:  #f8f8f8;
+      --card2: #f0f0f0;
+      --border:#e5e5e5;
+      --text:  #111111;
+      --muted: #888888;
       --r: 12px;
     }
 
@@ -41,7 +41,7 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 18px 48px;
-      background: rgba(8,8,8,.85);
+      background: rgba(255,255,255,.9);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
@@ -101,7 +101,7 @@
       font-size: clamp(72px, 9vw, 130px);
       line-height: .9;
       letter-spacing: .02em;
-      color: #fff;
+      color: #111;
     }
     .hero-name-kr {
       font-family: 'Noto Sans KR', sans-serif;
@@ -203,9 +203,9 @@
       padding: 5px 14px; border-radius: 100px;
       text-transform: uppercase;
     }
-    .tag-pink  { background: rgba(249,168,212,.12); color: var(--pink);  border: 1px solid rgba(249,168,212,.25); }
-    .tag-blue  { background: rgba(147,197,253,.12); color: var(--blue);  border: 1px solid rgba(147,197,253,.25); }
-    .tag-green { background: rgba(190,242,100,.12); color: var(--green); border: 1px solid rgba(190,242,100,.25); }
+    .tag-pink  { background: rgba(232,121,160,.1); color: var(--pink);  border: 1px solid rgba(232,121,160,.3); }
+    .tag-blue  { background: rgba(59,130,246,.1);  color: var(--blue);  border: 1px solid rgba(59,130,246,.3); }
+    .tag-green { background: rgba(101,163,13,.1);  color: var(--green); border: 1px solid rgba(101,163,13,.3); }
     .section-title {
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(36px, 5vw, 64px);
@@ -291,7 +291,7 @@
     .award-date { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
 
     /* ── ACTIVITIES ── */
-    #activities { background: #060606; }
+    #activities { background: #fafafa; }
     .timeline { position: relative; padding-left: 32px; }
     .timeline::before {
       content: ''; position: absolute;
@@ -369,7 +369,7 @@
     .proj-body { font-size: 13px; color: #999; line-height: 1.65; }
 
     /* ── EXPERIENCES ── */
-    #experiences { background: #060606; }
+    #experiences { background: #fafafa; }
     .exp-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
     }
@@ -950,7 +950,7 @@
   (function() {
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
-    const colors = ['#F9A8D4', '#93C5FD', '#BEF264'];
+    const colors = ['#e879a0', '#3b82f6', '#65a30d'];
     let W, H, dots = [];
 
     function resize() {
