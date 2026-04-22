@@ -145,24 +145,10 @@
       position: relative;
       width: 300px; height: 380px;
     }
-    .photo-ring::before {
-      content: '';
-      position: absolute; inset: -3px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, var(--pink), var(--blue), var(--green));
-      z-index: 0;
-    }
-    .photo-ring::after {
-      content: '';
-      position: absolute; inset: 3px;
-      border-radius: 18px;
-      background: var(--bg);
-      z-index: 0;
-    }
     @keyframes spin { to { transform: rotate(360deg); } }
     .photo-ring img {
-      position: absolute; inset: 6px; z-index: 1;
-      width: calc(100% - 12px); height: calc(100% - 12px);
+      position: absolute; inset: 0; z-index: 1;
+      width: 100%; height: 100%;
       border-radius: 15px;
       object-fit: cover;
       object-position: center top;
