@@ -143,28 +143,30 @@
     }
     .photo-ring {
       position: relative;
-      width: 320px; height: 320px;
+      width: 300px; height: 380px;
     }
     .photo-ring::before {
       content: '';
-      position: absolute; inset: -16px;
-      border-radius: 50%;
-      background: conic-gradient(var(--pink), var(--blue), var(--green), var(--pink));
-      animation: spin 8s linear infinite;
+      position: absolute; inset: -3px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--pink), var(--blue), var(--green));
+      z-index: 0;
     }
     .photo-ring::after {
       content: '';
-      position: absolute; inset: -4px;
-      border-radius: 50%;
+      position: absolute; inset: 3px;
+      border-radius: 18px;
       background: var(--bg);
+      z-index: 0;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
     .photo-ring img {
-      position: absolute; inset: 0; z-index: 1;
-      width: 100%; height: 100%;
-      border-radius: 50%;
+      position: absolute; inset: 6px; z-index: 1;
+      width: calc(100% - 12px); height: calc(100% - 12px);
+      border-radius: 15px;
       object-fit: cover;
       object-position: center top;
+      box-shadow: 0 20px 60px rgba(0,0,0,.12);
     }
     .floating-dots {
       position: absolute; inset: 0;
@@ -337,6 +339,8 @@
     .proj-card:hover { transform: translateY(-6px); }
     .proj-card.pc1:hover { border-color: var(--pink); }
     .proj-card.pc2:hover { border-color: var(--blue); }
+    .proj-card.pc3:hover { border-color: var(--green); }
+    .proj-card.pc4:hover { border-color: var(--pink); }
     .proj-card::before {
       content: ''; position: absolute;
       top: -80px; right: -80px;
@@ -345,6 +349,8 @@
     }
     .pc1::before { background: var(--pink); }
     .pc2::before { background: var(--blue); }
+    .pc3::before { background: var(--green); }
+    .pc4::before { background: var(--pink); }
     .proj-num {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 80px; line-height: 1;
@@ -368,8 +374,61 @@
     }
     .proj-body { font-size: 13px; color: #999; line-height: 1.65; }
 
+    /* ── DATA & SKILLS ── */
+    #data { background: #fafafa; }
+    .data-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    }
+    .data-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 36px;
+      transition: transform .3s, border-color .3s;
+    }
+    .data-card:hover { transform: translateY(-4px); }
+    .dc1:hover { border-color: var(--blue); }
+    .dc2:hover { border-color: var(--green); }
+    .data-card-label {
+      font-family: 'DM Mono', monospace; font-size: 10px;
+      text-transform: uppercase; letter-spacing: .16em;
+      color: var(--muted); margin-bottom: 8px;
+    }
+    .dc1 .data-card-label { color: var(--blue); }
+    .dc2 .data-card-label { color: var(--green); }
+    .data-card-title { font-weight: 700; font-size: 17px; margin-bottom: 8px; }
+    .data-card-course {
+      font-family: 'DM Mono', monospace; font-size: 11px;
+      color: var(--muted); margin-bottom: 12px;
+    }
+    .data-card-body { font-size: 13px; color: #999; line-height: 1.7; margin-bottom: 16px; }
+    .code-block {
+      background: #1a1a1a;
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-family: 'DM Mono', monospace;
+      font-size: 11.5px;
+      line-height: 1.65;
+      color: #e5e5e5;
+      overflow-x: auto;
+      margin-top: 16px;
+    }
+    .code-block .kw { color: #e879a0; }
+    .code-block .fn { color: #93c5fd; }
+    .code-block .cm { color: #555; font-style: italic; }
+    .code-block .st { color: #86efac; }
+    .code-block .nm { color: #fde68a; }
+    .code-result {
+      margin-top: 10px;
+      font-family: 'DM Mono', monospace; font-size: 11px;
+      color: var(--muted); background: var(--card2);
+      border: 1px solid var(--border); border-radius: 6px;
+      padding: 8px 14px; display: flex; gap: 16px; flex-wrap: wrap;
+    }
+    .code-result span { color: var(--text); font-weight: 600; }
+
     /* ── EXPERIENCES ── */
-    #experiences { background: #fafafa; }
+    #experiences { background: var(--bg); }
     .exp-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
     }
@@ -409,7 +468,7 @@
     .ec4 .exp-bullets li::before { color: var(--pink); }
 
     /* ── GROWTH ── */
-    #growth { background: var(--bg); }
+    #growth { background: #fafafa; }
     .growth-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
     }
@@ -494,9 +553,9 @@
       .nav-links { display: none; }
       #hero { grid-template-columns: 1fr; padding: 100px 20px 60px; }
       .hero-right { order: -1; }
-      .photo-ring { width: 200px; height: 200px; }
+      .photo-ring { width: 180px; height: 230px; }
       section { padding: 64px 20px; }
-      .profile-grid, .projects-grid, .exp-grid, .growth-grid { grid-template-columns: 1fr; }
+      .profile-grid, .projects-grid, .exp-grid, .growth-grid, .data-grid { grid-template-columns: 1fr; }
       .pcard.full { grid-column: auto; }
       footer { padding: 40px 20px; flex-direction: column; }
       .footer-copy { text-align: left; }
@@ -520,6 +579,7 @@
     <a href="#profile">Profile</a>
     <a href="#activities">Activities</a>
     <a href="#projects">Projects</a>
+    <a href="#data">Data</a>
     <a href="#experiences">Experience</a>
     <a href="#growth">Growth</a>
   </div>
@@ -547,9 +607,9 @@
         <span class="ico">@</span>
         juhyss2@naver.com
       </a>
-      <a href="tel:01066641195">
+      <a href="tel:01066641185">
         <span class="ico">☎</span>
-        010.6664.1195
+        010.6664.1185
       </a>
     </div>
   </div>
@@ -590,8 +650,8 @@
         <div class="entry-date">2021.03 — 2025.08</div>
       </div>
       <div class="edu-entry">
-        <div class="entry-title">호성여자고등학교</div>
-        <div class="entry-sub">Hoseong Girls' High School</div>
+        <div class="entry-title">효성여자고등학교</div>
+        <div class="entry-sub">Hyoseong Girls' High School</div>
         <div class="entry-date">2018.03 — 2021.01</div>
       </div>
     </div>
@@ -605,7 +665,7 @@
         <div class="entry-date">2025.03 — 2025.12</div>
       </div>
       <div class="career-entry">
-        <div class="entry-title">댈리에듀 (전 대칸학원)</div>
+        <div class="entry-title">앨리에듀(전 대찬학원)</div>
         <div class="entry-sub">영어 입시조교</div>
         <div class="entry-date">2023.03 — 2025.02</div>
       </div>
@@ -629,20 +689,32 @@
           <div class="cert-date">2026.03</div>
         </div>
         <div class="cert-item">
-          <div class="cert-name">TOEIC 935</div>
+          <div class="cert-name">TOEIC 935점</div>
           <div class="cert-date">2025.12</div>
-        </div>
-        <div class="cert-item">
-          <div class="cert-name">TOEIC SPEAKING AL</div>
-          <div class="cert-date">2025.09</div>
         </div>
         <div class="cert-item">
           <div class="cert-name">한국사능력검정 1급</div>
           <div class="cert-date">2025.10</div>
         </div>
         <div class="cert-item">
+          <div class="cert-name">TOEIC SPEAKING AL</div>
+          <div class="cert-date">2025.09</div>
+        </div>
+        <div class="cert-item">
           <div class="cert-name">컴퓨터활용능력 1급</div>
           <div class="cert-date">2025.07</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-name">운전면허 2종 보통</div>
+          <div class="cert-date">2020.12</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-name">문서실무사 2급 (국/영문)</div>
+          <div class="cert-date">2015.01</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-name">DIAT 디지털정보활용능력 고급</div>
+          <div class="cert-date">2014.01</div>
         </div>
       </div>
     </div>
@@ -654,43 +726,57 @@
         <div class="award-item">
           <div class="award-dot" style="background:var(--pink)"></div>
           <div>
-            <div class="award-text">국토지리원장표창</div>
+            <div class="award-text">국토지리정보원장표창</div>
             <div class="award-date">2025.12</div>
           </div>
         </div>
         <div class="award-item">
           <div class="award-dot" style="background:var(--blue)"></div>
           <div>
+            <div class="award-text">밝은사회장학 — 해외연수비 2,747,141원</div>
+            <div class="award-date">2024.12</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-dot" style="background:var(--green)"></div>
+          <div>
+            <div class="award-text">밝은사회장학 — 학생회장, 2개 학기 전액</div>
+            <div class="award-date">2024.09</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-dot" style="background:var(--pink)"></div>
+          <div>
             <div class="award-text">AI와 대학교육 에세이 공모전 최우수상</div>
             <div class="award-date">2023.12</div>
           </div>
         </div>
         <div class="award-item">
+          <div class="award-dot" style="background:var(--blue)"></div>
+          <div>
+            <div class="award-text">성적우수상 — 경희대학교</div>
+            <div class="award-date">2023.11</div>
+          </div>
+        </div>
+        <div class="award-item">
           <div class="award-dot" style="background:var(--green)"></div>
+          <div>
+            <div class="award-text">모범장학 (총 2회)</div>
+            <div class="award-date">2023.08</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-dot" style="background:var(--pink)"></div>
           <div>
             <div class="award-text">인문100년 장학 — 교육부, 4학기 전액</div>
             <div class="award-date">2023.07</div>
           </div>
         </div>
         <div class="award-item">
-          <div class="award-dot" style="background:var(--pink)"></div>
-          <div>
-            <div class="award-text">성적우수상 경희대학교</div>
-            <div class="award-date">2023.11</div>
-          </div>
-        </div>
-        <div class="award-item">
           <div class="award-dot" style="background:var(--blue)"></div>
           <div>
-            <div class="award-text">받은사회장학 — 학생회장 2학기 전액</div>
-            <div class="award-date">2024.09</div>
-          </div>
-        </div>
-        <div class="award-item">
-          <div class="award-dot" style="background:var(--green)"></div>
-          <div>
-            <div class="award-text">받은사회장학 — 해외연수비 2,747,141원</div>
-            <div class="award-date">2024.12</div>
+            <div class="award-text">밝은사회장학 — 전공연수비 3,061,696원</div>
+            <div class="award-date">2023.01</div>
           </div>
         </div>
       </div>
@@ -713,26 +799,26 @@
   <div class="timeline">
     <div class="tl-item reveal">
       <div class="tl-dot" style="background:var(--pink)"></div>
-      <div class="tl-date">2025.01 — 2025.01</div>
+      <div class="tl-date">2025.01.09 — 2025.01.21</div>
       <div class="tl-tag tag-pink">해외연수</div>
       <div class="tl-title">University of Pennsylvania 해외연수</div>
-      <div class="tl-body">경희대학교 겨울학기 프로그램 참여 · 학생대표로 50명 조 편성 및 안전 관리 · 철학 및 ESG 경영을 수강하며 글로벌 시각 확장</div>
+      <div class="tl-body">경희대학교 겨울학기 프로그램 대표단 참여 · 학생대표로 50명 조 편성 및 안전 관리 · 철학 및 ESG 경영을 수강하며 글로벌 시각 확장</div>
     </div>
 
     <div class="tl-item reveal reveal-delay-1">
       <div class="tl-dot" style="background:var(--blue)"></div>
       <div class="tl-date">2024.08</div>
       <div class="tl-tag tag-blue">봉사·기획</div>
-      <div class="tl-title">황성시 재배벤처정착지원 프로그램 기획 및 총괄</div>
-      <div class="tl-body">동아리연합회 학생회장으로 80명 규모의 농활 프로그램 기획 · 기획, 봉사정신 및 지역사회에 대한 관심 함양</div>
+      <div class="tl-title">횡성시 재해복구현장지원 프로그램 기획 및 총괄</div>
+      <div class="tl-body">동아리연합회 학생회장으로 80명 규모의 농활 프로그램 기획 · 기획력, 봉사정신 및 지역사회에 대한 관심 함양</div>
     </div>
 
     <div class="tl-item reveal reveal-delay-2">
       <div class="tl-dot" style="background:var(--green)"></div>
       <div class="tl-date">2024.04</div>
       <div class="tl-tag tag-green">봉사</div>
-      <div class="tl-title">교내 블로킹 프로그램</div>
-      <div class="tl-body">교내 봉사 동아리와 협업 · 교외부인이 많이 방문하는 봄 시기 교내 블로킹 진행</div>
+      <div class="tl-title">교내 플로킹 프로그램 기획</div>
+      <div class="tl-body">동아리연합회 학생회장으로 교내 봉사 동아리와 협업 · 외부인이 많이 방문하는 봄 시기 교내 플로킹 진행 · 봉사정신 및 도덕성 함양</div>
     </div>
 
     <div class="tl-item reveal reveal-delay-1">
@@ -747,24 +833,24 @@
       <div class="tl-dot" style="background:var(--blue)"></div>
       <div class="tl-date">2023.03 — 2024.12</div>
       <div class="tl-tag tag-blue">학생회</div>
-      <div class="tl-title">경희대학교 중앙동아리연합회 학생회</div>
-      <div class="tl-body">동아리연합회 학생회장으로 활동 · 기획·총괄 및 다자 이해관계자 조율 · 조직 기획·총괄 및 업체 계약 체결</div>
+      <div class="tl-title">경희대학교 중앙동아리연합회 학생회장</div>
+      <div class="tl-body">동아리연합회 학생회장으로 활동 · 동아리 심사·장학금 지급 · 행사 기획·총괄 및 업체 제휴 체결 · 다자 이해관계자 조율과 조직 운영</div>
     </div>
 
     <div class="tl-item reveal reveal-delay-3">
       <div class="tl-dot" style="background:var(--green)"></div>
-      <div class="tl-date">2023.02 — 2023.02</div>
+      <div class="tl-date">2023.02.12 — 2023.02.19</div>
       <div class="tl-tag tag-green">전공연수</div>
       <div class="tl-title">Geneva School of Diplomacy 전공연수</div>
-      <div class="tl-body">경희대학교 국제대학 겨울학기 전공연수 참여 · 국제관계학·경제학 강의 수강 · UN기구 방문을 통해 국제기구 이해도 증가</div>
+      <div class="tl-body">경희대학교 국제대학 겨울학기 전공연수 참여 · 국제관계학·경제학 강의 수강 · UN국제기구 방문을 통한 국제기구 이해도 증가</div>
     </div>
 
     <div class="tl-item reveal reveal-delay-1">
       <div class="tl-dot" style="background:var(--pink)"></div>
       <div class="tl-date">2022.01 — 2022.03</div>
       <div class="tl-tag tag-pink">멘토링</div>
-      <div class="tl-title">나이스쥬이스 멘토링 멘토</div>
-      <div class="tl-body">국제대학 신입생을 대상으로 멘토링 활동 진행 · 멘토로서 모범이 되기 위한 덕목을 함양 · 동료 멘티/멘터와의 커뮤니케이션 능력 향상</div>
+      <div class="tl-title">나이스츄미츄 멘토링 멘토</div>
+      <div class="tl-body">국제대학 신입생을 대상으로 멘토링 활동 진행 · 멘토로서 모범이 되기 위한 도덕성 함양 · 동료 멘토/멘티와의 커뮤니케이션 능력 향상</div>
     </div>
 
     <div class="tl-item reveal reveal-delay-2">
@@ -772,7 +858,7 @@
       <div class="tl-date">2021.03 — 2024.01</div>
       <div class="tl-tag tag-blue">대외활동</div>
       <div class="tl-title">경희대학교 모의유엔사무국</div>
-      <div class="tl-body">정보관리부원, 교육헌터레이너로 활동 · 전국 중고등학생 대상 3박 4일 모의유엔 프로그램 운영 · 글로벌 이슈를 주제로 모의유엔 토론 교육 진행 · 협동심 및 글로벌 이슈 지식 향상</div>
+      <div class="tl-body">정보관리부원, 교육헤드트레이너로 활동 · 전국 중고등학생 대상 3박 4일 모의유엔 프로그램 운영 · 글로벌 이슈를 주제로 모의유엔식 토론 교육 진행 · 협동심 및 글로벌 이슈 지식 함양</div>
     </div>
   </div>
 </section>
@@ -795,11 +881,11 @@
       <div class="proj-label"><span class="section-tag tag-pink" style="font-size:10px">논점 분석</span></div>
       <div class="proj-title">Korean Media &amp; Entertainment에 대한 논점 분석</div>
       <div class="proj-sub">K-콘텐츠 산업의 현재와 미래를 다각도로 분석</div>
-      <div class="proj-body">팬플랫폼이 아티스트와 팬 사이의 소통 방식을 어떻게 변화시키는지 탐구하고, 넷플릭스의 한국 콘텐츠 전략과 K-OTT 시장의 성장 가능성을 종합적으로 분석한 연구 과제.</div>
+      <div class="proj-body">팬플랫폼이 아티스트와 팬 사이의 소통 방식을 어떻게 변화시키는지 탐구하고, 넷플릭스의 한국 콘텐츠 전략과 K-웹툰 IP의 글로벌 슈퍼 IP 확장 가능성을 종합적으로 분석한 연구 과제.</div>
       <div class="proj-pills">
         <span class="proj-pill">팬플랫폼의 방향</span>
-        <span class="proj-pill">넷플릭스 K-콘텐츠</span>
-        <span class="proj-pill">K-OTT 시장</span>
+        <span class="proj-pill">넷플릭스 제국주의</span>
+        <span class="proj-pill">K-웹툰 슈퍼 IP</span>
         <span class="proj-pill">문화산업론</span>
       </div>
     </div>
@@ -815,6 +901,100 @@
         <span class="proj-pill">사회적 이슈</span>
         <span class="proj-pill">문화적 현상</span>
         <span class="proj-pill">마케팅 전략</span>
+      </div>
+    </div>
+
+    <div class="proj-card pc3 reveal reveal-delay-3">
+      <div class="proj-num">03</div>
+      <div class="proj-label"><span class="section-tag tag-green" style="font-size:10px">논문 분석</span></div>
+      <div class="proj-title">Korean Pop Culture 논문 및 뮤직비디오 분석</div>
+      <div class="proj-sub">ESG in K-Pop Industry 발표 포함, 12편 논문 분석</div>
+      <div class="proj-body">K-pop의 문화산업론적 배경, 한국 정체성, 글로벌 YouTube 확산, SM Town 전략 등 12편의 학술 논문을 분석하고, K-Pop 산업의 ESG 현황 및 그린 무브먼트를 주제로 발표 진행.</div>
+      <div class="proj-pills">
+        <span class="proj-pill">ESG in K-Pop</span>
+        <span class="proj-pill">문화외교</span>
+        <span class="proj-pill">뮤직비디오 분석</span>
+        <span class="proj-pill">한류 연구</span>
+      </div>
+    </div>
+
+    <div class="proj-card pc4 reveal reveal-delay-4">
+      <div class="proj-num">04</div>
+      <div class="proj-label"><span class="section-tag tag-pink" style="font-size:10px">Reflection Paper</span></div>
+      <div class="proj-title">뮤직비디오 분석 Reflection Paper 4편 작성</div>
+      <div class="proj-sub">K-pop 문화에 대한 심층적 성찰 및 비평적 글쓰기</div>
+      <div class="proj-body">K-pop 뮤직비디오와 한국 관광 연계, 팬덤 문화의 긍정적 측면, K-pop 이면의 사회 문제(아티스트 정신 건강), 한국 미디어의 현주소를 주제로 영문 Reflection Paper 4편 작성.</div>
+      <div class="proj-pills">
+        <span class="proj-pill">팬덤 문화</span>
+        <span class="proj-pill">아티스트 복지</span>
+        <span class="proj-pill">K-pop 관광</span>
+        <span class="proj-pill">비평적 글쓰기</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ── DATA & SKILLS ── -->
+<section id="data">
+  <div class="section-header reveal">
+    <span class="section-tag tag-blue">Data &amp; Skills</span>
+    <h2 class="section-title">데이터 &amp; 프로그래밍</h2>
+    <div class="section-dots">
+      <span class="sp"></span><span class="sb"></span><span class="sg"></span>
+    </div>
+  </div>
+
+  <div class="data-grid">
+    <div class="data-card dc1 reveal reveal-delay-1">
+      <div class="data-card-label">Python · 경제 모델링</div>
+      <div class="data-card-title">Mathematics for Economics and Business</div>
+      <div class="data-card-course">경희대학교 수강 과목 · Python으로 경제 모델 구현</div>
+      <div class="data-card-body">다양한 경제 모델을 수식으로 풀고 Python으로 구현. Phase Space, Displacement over Time, Velocity Space 시각화 수행.</div>
+      <div class="code-block"><span class="kw">import</span> numpy <span class="kw">as</span> np
+
+<span class="cm"># Ramsey-Cass-Koopmans Model Parameters</span>
+<span class="nm">theta</span> = <span class="st">0.03</span>
+<span class="nm">n</span>     = <span class="st">0.02</span>
+<span class="nm">delta</span> = <span class="st">0.05</span>
+<span class="nm">alpha</span> = <span class="st">0.3</span>
+
+<span class="nm">k_star</span> = (alpha / (n + delta)) ** (<span class="st">1</span> / (<span class="st">1</span> - alpha))
+<span class="nm">c_star</span> = k_star**alpha - (n + delta) * k_star
+
+<span class="fn">print</span>(<span class="st">f"(k_t+): {k_star:.4f}"</span>)
+<span class="fn">print</span>(<span class="st">f"(c_t+): {c_star:.4f}"</span>)</div>
+      <div class="code-result">
+        결과값 &nbsp;·&nbsp; k_t+ : <span>7.9963</span> &nbsp;·&nbsp; c_t+ : <span>1.3061</span>
+      </div>
+    </div>
+
+    <div class="data-card dc2 reveal reveal-delay-2">
+      <div class="data-card-label">C · 프로그래밍 논리</div>
+      <div class="data-card-title">프로그래밍을 통한 논리적 사유</div>
+      <div class="data-card-course">경희대학교 수강 과목 · C언어 학습 및 학습서 작성</div>
+      <div class="data-card-body">C언어의 기본 문법과 데이터 타입을 학습하고, 부동소수점 출력 포맷 제어(fixed, setprecision, showpoint)를 실습. 2023학년도 2학기 자습반 학습서 작성에 참여.</div>
+      <div class="code-block"><span class="kw">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+<span class="kw">#include</span> <span class="st">&lt;iomanip&gt;</span>
+<span class="kw">using namespace</span> std;
+
+<span class="fn">int</span> <span class="nm">main</span>() &#123;
+  <span class="fn">float</span> <span class="nm">f1</span>    = <span class="st">1.0f</span>;
+  <span class="fn">float</span> <span class="nm">f1234</span> = <span class="st">1.234f</span>;
+
+  cout &lt;&lt; fixed;
+  cout &lt;&lt; setprecision(<span class="st">2</span>);
+  cout &lt;&lt; f1    &lt;&lt; <span class="st">" | setprecision(2)\n"</span>;
+  cout &lt;&lt; f1234 &lt;&lt; endl;
+
+  cout &lt;&lt; setprecision(<span class="st">0</span>);
+  cout &lt;&lt; showpoint &lt;&lt; f1234 &lt;&lt; endl;
+
+  <span class="kw">return</span> <span class="st">0</span>;
+&#125;</div>
+      <div class="code-result">
+        ADsP 데이터분석준전문가 취득 <span>(2026.03)</span> &nbsp;·&nbsp; 데이터 기반 문제해결 역량 함양
       </div>
     </div>
   </div>
@@ -837,9 +1017,12 @@
       <div class="exp-number">경험 01</div>
       <div class="exp-title">[학생회장] 행사 개최</div>
       <ul class="exp-bullets">
-        <li>농활프로그램 — 8/21~23 강원도 횡성시에서 80여명의 학우와 농활 프로그램 진행, 다양한 활동 체험 구성</li>
-        <li>벚꽃행사 — 3/27~28 느린우체통 컨셉의 행사 진행, 교내 사진/필사 동아리와 협업하여 엽서 제작</li>
-        <li>학술제 — 9/25~11/22 주제: SDGs / 50년 후 미래, 학술논문 및 전시작품 심사 및 시상 진행</li>
+        <li>플로킹 — 4/6 봉사 동아리와 협업하여 교내 플로킹 행사 진행, 봉사시간 제공</li>
+        <li>동아리박람회 — 3/11~12 총 29개 부스, 1,000명 이상 참여. 게임 형태 컨셉 도입(NPC 역할·계급쟁탈전·사탕소개팅)</li>
+        <li>설국교류전 — 5/27~28 두 캠퍼스 간 공연·체육 경기 진행, 5개 스포츠·4개 음악 분야 경연, 40여명 총괄</li>
+        <li>농활프로그램 — 8/21~23 강원도 횡성시에서 80여명과 농활, 옥수수·토마토·감자·고추 등 다양한 체험 구성</li>
+        <li>벚꽃행사 — 3/27~28 느린우체통 컨셉, 교내 사진·필사 동아리와 협업하여 엽서 제작</li>
+        <li>학술제 — 9/25~11/22 주제: SDGs / 50년 후 미래, 학술논문 및 전시창작품(우주복·웹게임·건축물 등) 심사 및 시상</li>
       </ul>
     </div>
 
@@ -847,19 +1030,21 @@
       <div class="exp-number">경험 02</div>
       <div class="exp-title">[학생회 &amp; 행정근로] 외국인 교환학생을 위한 변화 추진</div>
       <ul class="exp-bullets">
-        <li>외국인 학생들의 동일 문의 반복 → 한국어 중심 정보 전달 체계 문제를 파악하여 영문 홈페이지 전면 개편</li>
-        <li>카카오톡 채널 운영(영어 문의) / 영문 카드뉴스 게시 — 동아리 지원율 1% → 25% 이상 성장</li>
-        <li>당시 외국인 학생 대상으로 공약을 이행한 유일한 학생회로 긍정적인 평가를 받음</li>
+        <li>외국인 학생들의 동일 문의 반복 → 한국어 중심 정보 전달 체계 문제를 파악하여 630명 이상이 사용하는 영문 홈페이지 전면 개편</li>
+        <li>대학·대학원 학사 규정 숙지 후 국영문 번역문 게시 (공지 누적 290건 이상)</li>
+        <li>카카오톡 채널 운영(영어 문의) / 53개 동아리 정보를 영문 카드뉴스로 제공 — 동아리 지원율 1% → 25% 이상 성장</li>
+        <li>당시 외국인 학생 대상 공약을 이행한 유일한 학생회로 긍정적인 평가를 받음</li>
       </ul>
     </div>
 
     <div class="exp-card ec3 reveal reveal-delay-3">
       <div class="exp-number">경험 03</div>
-      <div class="exp-title">[행정근로] 국제대학 행정 지원</div>
+      <div class="exp-title">[모의유엔사무국] 입출금계좌 &amp; 각종 문서 담당</div>
       <ul class="exp-bullets">
-        <li>경희대학교 국제대학 행정실 근로 — 대학원 석사 규정 수치 후 국영문 번역 제공</li>
-        <li>각종 행사 기획·보조 및 내부 행정 문서 정리, 자료 관리</li>
-        <li>다자 이해관계자 조율을 통한 조직 운영, 협업의 가치 체화</li>
+        <li>KIMUN WORKSHOP 참가비 입출금 내역 관리, 환불신청서·환불누적서 작성</li>
+        <li>중고등학생 교육용 가이드북·명찰·수료증 등 각종 문서 제작</li>
+        <li>3박 4일 모의유엔 프로그램 운영 — 4개 교육팀 중 참가자 만족도 조사 1위 달성</li>
+        <li>후배 부원들을 독려하고 협업하는 과정을 통해 동료들로부터 긍정적인 피드백 수령</li>
       </ul>
     </div>
 
@@ -867,9 +1052,10 @@
       <div class="exp-number">경험 04</div>
       <div class="exp-title">ESDI &amp; UN-GGIM-AP 총회 개최</div>
       <ul class="exp-bullets">
-        <li>환영만찬 및 기술투어 기획안 / 기념물 구성 / 총회개최 방침문서 작성 · 영문 초청장 및 홈페이지 제작</li>
-        <li>초청공무원(개발도상국) 대상 지리정보 지원 소개 / UN 총회 환영만찬 사회 진행</li>
-        <li>UN 사무국 데이터 분석 — 지원 30% 이상 국가 실태 파악, 개도국 지원 확대 제안으로 예산 3,500만원 절감 및 31개국 101명 참석</li>
+        <li>환영만찬 및 기술투어 기획안 / 기념품 구성 / 총회개최 방침문서 · 국영문 초청장 · 홈페이지 제작 · 행사 업무분장 작성</li>
+        <li>초청공무원(개발도상국) 대상 지리정보원 소개 / UN 총회 환영만찬 사회 진행</li>
+        <li>UN 사무국 데이터 분석 — 전년도 기준 30% 이상 국가 지원 실태 파악 후 개도국 지원 확대 제안</li>
+        <li>예산 3,500만원 절감 · 9개국 초청 → 31개국 101명 참석 달성</li>
       </ul>
     </div>
   </div>
@@ -894,11 +1080,11 @@
       <div class="growth-cols">
         <div>
           <div class="growth-block-title">문제 상황</div>
-          <div class="growth-block-body">구성원별 특성·업무 부적합으로 인한 업무 부적응 발생. 일부 부원의 참여 의지 저하, 수직적 소통 구조로 인한 이탈 위험.</div>
+          <div class="growth-block-body">구성원별 특성·업무 부적합으로 인한 업무 부적응 발생. 일부 부원의 참여 의지 저하, 업무 편중으로 인한 수직적 소통 구조 및 이탈 위험.</div>
         </div>
         <div>
           <div class="growth-block-title">노력 방향</div>
-          <div class="growth-block-body">상호 피드백 게시판을 활용한 투명한 소통. 모든 의견 경청 및 구성원 역량을 살린 역할 배분. 회의를 통한 개선 방향 논의.</div>
+          <div class="growth-block-body">상호 피드백 게시판을 활용한 투명한 소통. 모든 의견 경청 및 구성원 역량을 살린 역할 배분. 회의를 통한 개선 방향 논의 및 의견 반영.</div>
         </div>
       </div>
       <div class="result-badge">
@@ -907,16 +1093,34 @@
     </div>
 
     <div class="growth-card gc2 reveal reveal-delay-2">
-      <div class="growth-case-label">Case 02 · 협업 사례</div>
+      <div class="growth-case-label">Case 02 · 도전 — 가장 도전적이었던 행사</div>
+      <div class="growth-title">학술제: 구조를 읽는 협상으로 예산 57% 절감</div>
+      <div class="growth-cols">
+        <div>
+          <div class="growth-block-title">문제 상황</div>
+          <div class="growth-block-body">기존 단순 나열형 성과보고회의 한계. 예산 부족으로 전시회 진행 불가. 학술제 참여 경험 부족으로 기획의 어려움.</div>
+        </div>
+        <div>
+          <div class="growth-block-title">해결 방향</div>
+          <div class="growth-block-body">가벽업체 원가 구조 분석 → 보수·인건비 비중 파악. 타 단과대 철거 일정과 연계 방안 제시. 행사 기대효과를 수치화하여 교내·외부업체와 협상.</div>
+        </div>
+      </div>
+      <div class="result-badge">
+        ✦ 장학금 1,200만원 유치 · 160만원 절감 · "가장 수준 높은 학술제" 평가
+      </div>
+    </div>
+
+    <div class="growth-card gc1 reveal reveal-delay-3" style="--hover-color: var(--pink);">
+      <div class="growth-case-label">Case 03 · 협업 사례</div>
       <div class="growth-title">모의유엔 4개 교육팀 참가자 맞춤형 프로그램 준비</div>
       <div class="growth-cols">
         <div>
-          <div class="growth-block-title">상황</div>
-          <div class="growth-block-body">3박 4일 행사 준비 과정에서 시간 부족, 파트너와의 교육 자료 제작 및 교육 진행, 전체 프로그램에 대한 이해도 부족.</div>
+          <div class="growth-block-title">문제 상황</div>
+          <div class="growth-block-body">3박 4일 행사 준비 과정에서 시간 부족. 파트너와의 교육 자료 제작 및 교육 진행. 전체 프로그램에 대한 부원들의 이해도 부족.</div>
         </div>
         <div>
           <div class="growth-block-title">노력 방향</div>
-          <div class="growth-block-body">행사 한 달 전부터 모든 부원이 모여 교육리허설 진행, 설명이 어려운 부분을 치료하며 파악, 참가자 맞춤형 홍보·대회관리부와 지속적 협력.</div>
+          <div class="growth-block-body">행사 한 달 전부터 모든 부원이 모여 교육리허설 진행. 설명이 어려운 부분과 지루한 부분 파악 및 보완. 참가자 정보 파악 및 맞춤형 교육 준비.</div>
         </div>
       </div>
       <div class="result-badge">
